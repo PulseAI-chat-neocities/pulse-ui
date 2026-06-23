@@ -82,21 +82,6 @@ input.addEventListener("keydown", (e) => {
   }
 });
 
-// Menü működés
-const menuButton = document.getElementById("menuButton");
-const sidebar = document.getElementById("sidebar");
-const overlay = document.getElementById("sidebarOverlay");
-
-menuButton.onclick = () => {
-  sidebar.classList.toggle("open");
-  overlay.classList.toggle("open");
-};
-
-overlay.onclick = () => {
-  sidebar.classList.remove("open");
-  overlay.classList.remove("open");
-};
-
 // Chat rendszer
 let chats = JSON.parse(localStorage.getItem("neurai_chats")) || [];
 let activeChatId = localStorage.getItem("neurai_active_chat") || null;
