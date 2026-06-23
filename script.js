@@ -11,9 +11,6 @@ async function sendMessage() {
   // user buborék
   addBubble(text, "user");
 
-  // MENTÉS – USER
-  addMessage("user", text);
-
   input.value = "";
 
   const thinkingBubble = addBubble("Neurai is thinking...", "ai");
@@ -47,9 +44,6 @@ async function sendMessage() {
     }
 
     thinkingBubble.textContent = aiText;
-
-    // MENTÉS – NEURAI
-    addMessage("neurai", aiText);
 
   } catch (err) {
     thinkingBubble.textContent = "Couldn't connect to Neurai. Check your internet connection.";
