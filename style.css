@@ -13,7 +13,7 @@ body {
   min-height: 100vh;
 }
 
-.pulse-ui {
+.neurai-ui {
   width: 100%;
   max-width: 480px;
   height: 90vh;
@@ -26,20 +26,13 @@ body {
   overflow: hidden;
 }
 
-.pulse-header {
+.neurai-header {
   text-align: center;
   padding: 18px 16px 10px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.04);
 }
 
-.pulse-logo {
-  width: 64px;
-  height: 64px;
-  display: block;
-  margin: 0 auto 6px;
-}
-
-.pulse-header h1 {
+.neurai-header h1 {
   margin: 0;
   font-size: 20px;
   font-weight: 600;
@@ -51,7 +44,7 @@ body {
   color: #7a7f8c;
 }
 
-.pulse-chat {
+.neurai-chat {
   flex: 1;
   padding: 16px;
   overflow-y: auto;
@@ -93,7 +86,7 @@ body {
   border: 1px solid #e5e7eb;
 }
 
-.pulse-input {
+.neurai-input {
   display: flex;
   padding: 10px;
   gap: 8px;
