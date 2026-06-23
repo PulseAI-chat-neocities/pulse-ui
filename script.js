@@ -75,6 +75,7 @@ input.addEventListener("keydown", (e) => {
   }
 });
 
+// Menü működés
 const menuButton = document.getElementById("menuButton");
 const sidebar = document.getElementById("sidebar");
 const overlay = document.getElementById("sidebarOverlay");
@@ -88,4 +89,88 @@ overlay.onclick = () => {
   sidebar.classList.remove("open");
   overlay.classList.remove("open");
 };
+
+// Chat rendszer
+let chats = JSON.parse(localStorage.getItem("neurai_chats")) || [];
+let activeChatId = localStorage.getItem("neurai_active_chat") || null;
+
+// Chatlista kirajzolása
+function renderChatList() {
+  const list = document.getElementById("chatList");
+  list.innerHTML = "";
+
+  chats.forEach(chat => {
+    const btn = document.createElement("button");
+    btn.className = "chat-item" + (chat.id === activeChatId ? " active" : "");
+    btn.textContent = chat.title;
+
+    btn.onclick = () => {
+      activeChatId = chat.id;
+      saveChats();
+      renderChatList();
+      renderChat();
+    };
+
+    list.appendChild(btn);
+  });
+}
+
+// Új chat
+document.getElementById("newChat").onclick = () => {
+  const id = Date.now().toString();
+
+  const newChat = {
+    id,
+    title: "Új chat",
+    messages: []
+  };
+
+  chats.push(newChat);
+  activeChatId = id;
+
+  saveChats();
+  renderChatList();
+  renderChat();
+};
+
+// Üzenet hozzáadása
+function addMessage(role, text) {
+  const chat = chats.find(c => c.id === activeChatId);
+  if (!chat) return;
+
+  chat.messages.push({
+    role,
+    text,
+    time: Date.now()
+  });
+
+  saveChats();
+  renderChat();
+}
+
+// Chat kirajzolása
+function renderChat() {
+  const chat = chats.find(c => c.id === activeChatId);
+  const container = document.getElementById("chatContainer");
+
+  if (!chat) {
+    container.innerHTML = "<p>Nincs kiválasztott chat.</p>";
+    return;
+  }
+
+  container.innerHTML = chat.messages
+    .map(m => `<div class="msg ${m.role}">${m.text}</div>`)
+    .join("");
+}
+
+// Mentés
+function saveChats() {
+  localStorage.setItem("neurai_chats", JSON.stringify(chats));
+  localStorage.setItem("neurai_active_chat", activeChatId);
+}
+
+// Induláskor
+renderChatList();
+renderChat();
+
 
