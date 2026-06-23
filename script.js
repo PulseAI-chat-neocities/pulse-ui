@@ -115,7 +115,6 @@ function renderChatList() {
       activeChatId = chat.id;
       saveChats();
       renderChatList();
-      renderChat();
     };
 
     list.appendChild(btn);
@@ -128,7 +127,7 @@ document.getElementById("newChat").onclick = () => {
 
   const newChat = {
     id,
-    title: "Új chat",
+    title: "New Chat",
     messages: []
   };
 
@@ -137,7 +136,6 @@ document.getElementById("newChat").onclick = () => {
 
   saveChats();
   renderChatList();
-  renderChat();
 };
 
 // Üzenet hozzáadása
@@ -152,7 +150,6 @@ function addMessage(role, text) {
   });
 
   saveChats();
-  renderChat();
 }
 
 // Chat kirajzolása
