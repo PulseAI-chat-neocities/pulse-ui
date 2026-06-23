@@ -1,4 +1,5 @@
 // NeuraiChatApp.tsx
+import "./menu.css";
 import React, { useState } from "react";
 
 type Chat = {
