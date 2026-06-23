@@ -6,14 +6,16 @@ async function sendMessage() {
   const text = input.value.trim();
   if (!text) return;
 
-  // gomb tiltása, amíg gondolkodik
   sendBtn.disabled = true;
 
   // user buborék
   addBubble(text, "user");
+
+  // MENTÉS – USER
+  addMessage("user", text);
+
   input.value = "";
 
-  // „Pulse gondolkodik…” buborék
   const thinkingBubble = addBubble("Neurai is thinking...", "ai");
 
   try {
@@ -45,6 +47,10 @@ async function sendMessage() {
     }
 
     thinkingBubble.textContent = aiText;
+
+    // MENTÉS – NEURAI
+    addMessage("neurai", aiText);
+
   } catch (err) {
     thinkingBubble.textContent = "Couldn't connect to Neurai. Check your internet connection.";
   } finally {
@@ -52,6 +58,7 @@ async function sendMessage() {
     scrollToBottom();
   }
 }
+
 
 function addBubble(text, type) {
   const bubble = document.createElement("div");
