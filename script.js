@@ -74,3 +74,18 @@ input.addEventListener("keydown", (e) => {
     sendMessage();
   }
 });
+
+const menuButton = document.getElementById("menuButton");
+const sidebar = document.getElementById("sidebar");
+const overlay = document.getElementById("sidebarOverlay");
+
+menuButton.onclick = () => {
+  sidebar.classList.toggle("open");
+  overlay.classList.toggle("open");
+};
+
+overlay.onclick = () => {
+  sidebar.classList.remove("open");
+  overlay.classList.remove("open");
+};
+
