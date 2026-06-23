@@ -1,0 +1,174 @@
+/* styles.css – egyszerű, ChatGPT-szerű slide-in menü */
+
+.app-root {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #0f172a; /* sötét háttér */
+  color: #e5e7eb;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+/* Felső sáv */
+
+.topbar {
+  height: 56px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  border-bottom: 1px solid #1f2937;
+  background: #020617;
+}
+
+.menu-button {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: none;
+  background: #111827;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  padding: 6px;
+  cursor: pointer;
+}
+
+.menu-button:hover {
+  background: #1f2937;
+}
+
+.menu-line {
+  height: 2px;
+  width: 18px;
+  background: #e5e7eb;
+  border-radius: 999px;
+}
+
+.topbar-title {
+  margin-left: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+/* Oldalsó menü + overlay */
+
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.18s ease-out;
+}
+
+.sidebar-overlay.open {
+  pointer-events: auto;
+  opacity: 1;
+}
+
+.sidebar {
+  position: absolute;
+  top: 56px; /* topbar alatt */
+  left: 0;
+  bottom: 0;
+  width: 280px;
+  background: #020617;
+  border-right: 1px solid #1f2937;
+  transform: translateX(-100%);
+  transition: transform 0.18s ease-out;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
+
+.overlay-click-area {
+  position: absolute;
+  inset: 56px 0 0 0; /* topbar alatt */
+  background: rgba(15, 23, 42, 0.6);
+}
+
+/* Sidebar tartalom */
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  border-bottom: 1px solid #1f2937;
+}
+
+.sidebar-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #9ca3af;
+}
+
+.new-chat-button {
+  border: none;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 12px;
+  background: #111827;
+  color: #e5e7eb;
+  cursor: pointer;
+}
+
+.new-chat-button:hover {
+  background: #1f2937;
+}
+
+.chat-list {
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow-y: auto;
+}
+
+.chat-list-item {
+  border: none;
+  border-radius: 8px;
+  padding: 8px 10px;
+  text-align: left;
+  font-size: 13px;
+  background: transparent;
+  color: #e5e7eb;
+  cursor: pointer;
+}
+
+.chat-list-item:hover {
+  background: #111827;
+}
+
+.chat-list-item.active {
+  background: #1f2937;
+}
+
+/* Fő chat terület */
+
+.chat-main {
+  flex: 1;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-header h2 {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.chat-body {
+  flex: 1;
+  border-radius: 12px;
+  border: 1px solid #1f2937;
+  padding: 16px;
+  background: radial-gradient(circle at top left, #0b1120, #020617);
+  font-size: 14px;
+  color: #d1d5db;
+}
