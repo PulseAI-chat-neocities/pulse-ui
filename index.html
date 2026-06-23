@@ -7,26 +7,27 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <button id="menuButton" class="menu-button">
+  <!-- Menü gomb -->
+<button id="menuButton" class="menu-button">
   <span></span>
   <span></span>
   <span></span>
 </button>
 
+<!-- Oldalsó menü -->
 <div id="sidebarOverlay" class="sidebar-overlay">
   <aside id="sidebar" class="sidebar">
     <div class="sidebar-header">
-      <h3>Chats</h3>
-      <button id="newChat" class="new-chat">+ New Chat</button>
+      <h3>Beszélgetések</h3>
+      <button id="newChat" class="new-chat">+ Új chat</button>
     </div>
 
-    <div id="chatList" class="chat-list">
-      <button class="chat-item active">First chat</button>
-      <button class="chat-item">Prompt ideas</button>
-      <button class="chat-item">Neurai developments</button>
-    </div>
+    <div id="chatList" class="chat-list"></div>
   </aside>
 </div>
+
+<!-- A chat tartalma -->
+<div id="chatContainer" class="chat-container"></div>
 
   <div class="neurai-ui">
     <header class="neurai-header">
