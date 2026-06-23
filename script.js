@@ -14,7 +14,7 @@ async function sendMessage() {
   input.value = "";
 
   // „Pulse gondolkodik…” buborék
-  const thinkingBubble = addBubble("Pulse is thinking...", "ai");
+  const thinkingBubble = addBubble("Neurai is thinking...", "ai");
 
   try {
     const response = await fetch("https://pulse-proxy-3n26.onrender.com/chat", {
@@ -27,7 +27,7 @@ async function sendMessage() {
         messages: [
           {
             role: "system",
-            content: "You are Pulse, a friendly, concise AI assistant. Answer in English by default."
+            content: "You are Neurai, a friendly, concise AI assistant. Answer in English by default."
           },
           {
             role: "user",
@@ -39,14 +39,14 @@ async function sendMessage() {
 
     const data = await response.json();
 
-    let aiText = "Error while searrching answer.";
+    let aiText = "Error while searching answer.";
     if (data && data.choices && data.choices[0] && data.choices[0].message) {
       aiText = data.choices[0].message.content;
     }
 
     thinkingBubble.textContent = aiText;
   } catch (err) {
-    thinkingBubble.textContent = "Couln't connect to Groq. Check your API key or internet connection.";
+    thinkingBubble.textContent = "Couldn't connect to Neurai. Check your internet connection.";
   } finally {
     sendBtn.disabled = false;
     scrollToBottom();
