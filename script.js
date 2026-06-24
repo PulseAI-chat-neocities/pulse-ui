@@ -2,11 +2,11 @@ const chat = document.getElementById("chat");
 const input = document.getElementById("input");
 const sendBtn = document.getElementById("send");
 
-// CHAT MEMORY
+// CHAT MEMORY (csak tároljuk, nem küldjük messages-ként)
 let history = [
   {
     role: "system",
-    content: "You are Neurai, a friendly, casual AI assistant. Beszélj természetesen, emberien, egyszerűen. Légy támogató, humoros, de soha nem sértő. Ne légy túl formális vagy robotikus. Válaszolj világosan és lényegre törően."
+    content: "You are Neurai, a friendly, casual AI assistant. Beszélj természetesen, emberien, egyszerűen."
   }
 ];
 
@@ -30,6 +30,11 @@ async function sendMessage() {
   const thinkingBubble = addBubble("Neurai is thinking...", "ai");
 
   try {
+    // 🔥 MŰ-MEMÓRIA: összefűzzük a teljes history-t egyetlen üzenetté
+    const memoryText = history
+      .map(h => `${h.role.toUpperCase()}: ${h.content}`)
+      .join("\n");
+
     const response = await fetch("https://pulse-proxy-3n26.onrender.com/chat", {
       method: "POST",
       headers: {
@@ -37,7 +42,10 @@ async function sendMessage() {
       },
       body: JSON.stringify({
         model: "llama-3.1-8b-instant",
-        messages: history
+        messages: [
+          { role: "system", content: history[0].content },
+          { role: "user", content: memoryText }
+        ]
       })
     });
 
@@ -85,5 +93,4 @@ input.addEventListener("keydown", (e) => {
     sendMessage();
   }
 });
-
 
