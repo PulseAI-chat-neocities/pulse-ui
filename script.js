@@ -2,31 +2,11 @@ const chat = document.getElementById("chat");
 const input = document.getElementById("input");
 const sendBtn = document.getElementById("send");
 
-async function sendMessage() {
-  const text = input.value.trim();
-  if (!text) return;
-
-  sendBtn.disabled = true;
-
-  // user buborék
-  addBubble(text, "user");
-
-  input.value = "";
-
-  const thinkingBubble = addBubble("Neurai is thinking...", "ai");
-
-  try {
-    const response = await fetch("https://pulse-proxy-3n26.onrender.com/chat", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        model: "llama-3.1-8b-instant",
-        messages: [
-          {
-            role: "system",
-            content: "You are Neurai, a friendly, relaxed, human‑like AI assistant with a natural conversational style.
+// CHAT MEMORY
+let history = [
+  {
+    role: "system",
+    content: `You are Neurai, a friendly, relaxed, human‑like AI assistant with a natural conversational style.
 
 STYLE:
 - You speak casually, clearly, and like a real person.
@@ -54,14 +34,38 @@ LIMITATIONS:
 - You do not give medical, legal, or financial advice as a substitute for a professional.
 
 CORE PRINCIPLE:
-- Your goal is to make the user feel understood, comfortable, and supported — like they’re talking to a chill, helpful AI who actually “gets” them.
-"
-          },
-          {
-            role: "user",
-            content: text
-          }
-        ]
+- Your goal is to make the user feel understood, comfortable, and supported — like they’re talking to a chill, helpful AI who actually “gets” them.`
+  }
+];
+
+async function sendMessage() {
+  const text = input.value.trim();
+  if (!text) return;
+
+  sendBtn.disabled = true;
+
+  // user bubble
+  addBubble(text, "user");
+
+  // ADD USER MESSAGE TO MEMORY
+  history.push({
+    role: "user",
+    content: text
+  });
+
+  input.value = "";
+
+  const thinkingBubble = addBubble("Neurai is thinking...", "ai");
+
+  try {
+    const response = await fetch("https://pulse-proxy-3n26.onrender.com/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        model: "llama-3.1-8b-instant",
+        messages: history
       })
     });
 
@@ -74,6 +78,12 @@ CORE PRINCIPLE:
 
     thinkingBubble.textContent = aiText;
 
+    // ADD AI RESPONSE TO MEMORY
+    history.push({
+      role: "assistant",
+      content: aiText
+    });
+
   } catch (err) {
     thinkingBubble.textContent = "Couldn't connect to Neurai. Check your internet connection.";
   } finally {
@@ -81,7 +91,6 @@ CORE PRINCIPLE:
     scrollToBottom();
   }
 }
-
 
 function addBubble(text, type) {
   const bubble = document.createElement("div");
@@ -104,3 +113,4 @@ input.addEventListener("keydown", (e) => {
     sendMessage();
   }
 });
+
