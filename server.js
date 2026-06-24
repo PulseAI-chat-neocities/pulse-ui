@@ -6,13 +6,18 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// valódi memória a szerveren
-let history = [];
+// valódi memória
+let history = [
+  {
+    role: "system",
+    content: "You are Neurai, a friendly, casual AI assistant."
+  }
+];
 
 app.post("/chat", async (req, res) => {
   const userMessage = req.body.message;
 
-  // hozzáadjuk a user üzenetet a memóriához
+  // user üzenet hozzáadása
   history.push({ role: "user", content: userMessage });
 
   // elküldjük a teljes history-t a modellnek
@@ -31,10 +36,11 @@ app.post("/chat", async (req, res) => {
   const data = await response.json();
   const aiText = data.choices[0].message.content;
 
-  // AI válasz hozzáadása a memóriához
+  // AI válasz hozzáadása
   history.push({ role: "assistant", content: aiText });
 
   res.json({ reply: aiText });
 });
 
 app.listen(3000, () => console.log("Backend running on http://localhost:3000"));
+
