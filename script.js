@@ -7,7 +7,6 @@ let history = [
   {
     role: "system",
     content: "You are Neurai, a friendly, casual AI assistant. Beszélj természetesen, emberien, egyszerűen. Légy támogató, humoros, de soha nem sértő. Ne légy túl formális vagy robotikus. Válaszolj világosan és lényegre törően."
-.`
   }
 ];
 
@@ -86,4 +85,5 @@ input.addEventListener("keydown", (e) => {
     sendMessage();
   }
 });
+
 
