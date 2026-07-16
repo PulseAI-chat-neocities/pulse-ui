@@ -6,5 +6,7 @@
 <li>Change the design of the website (in style.css)
 </li>
 <li>Change the name and favicon (index.html, server.js and favicon.png (The current favicon is IMG_4145.png))
-</li>  
+</li>
+<li>There are lots of parts that I dont use as I have Neurai on Netlify currently (URL at bottom of page), so if you plan to put Neurai on a different web hosting platform, you can activate the unused parts.</li>
 </ul>
+<p>Neurai also has a proxy for it to connect to Groq, which is </p>
