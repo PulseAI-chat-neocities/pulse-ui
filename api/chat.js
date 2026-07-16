@@ -1,6 +1,6 @@
 export default async function handler(req, res) {
   if (req.method !== "POST") {
-    return res.status(405).json({ error: "Csak POST engedélyezett" });
+    return res.status(405).json({ error: "Only POST allowed" });
   }
 
   const userMessage = req.body.message;
@@ -9,7 +9,7 @@ export default async function handler(req, res) {
   global.history = global.history || [
     {
       role: "system",
-      content: "You are Neurai, a friendly, casual Hungarian AI assistant."
+      content: "You are Neurai, a friendly, casual AI assistant."
     }
   ];
 
