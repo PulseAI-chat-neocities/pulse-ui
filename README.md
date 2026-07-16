@@ -12,3 +12,4 @@
 <p>Neurai also has a proxy for it to connect to Groq, which is <a href = "https://pulse-proxy-3n26.onrender.com/chat">here</a> if you want to take a look. (URL from script.js line 38).</p>
 <p>Now, the URL to the current Neurai. It is <a href = "https://neurai-chat.netlify.app">neurai-chat.netlify.app</a>. You can see the URL by clicking on the link or by typing the URL in your search engine if the link doesnt work.</p>
 <p colour = "red">!!!IMPORTANT!!!</p>
+<font color="red">IMPORTANT</font>
