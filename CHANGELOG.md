@@ -3,3 +3,4 @@
 <li>June 23, 2026</li>
 <ul>
 <li>Created project</li> 
+<li>Published to Netlify</li>
