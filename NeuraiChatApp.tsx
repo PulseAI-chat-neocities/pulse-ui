@@ -1,4 +1,4 @@
-// NeuraiChatApp.tsx
+// This isnt used but if you want a menu in you version of Neurai, you can make this work as it needs (I couldnt)
 import "./menu.css";
 import React, { useState } from "react";
 
