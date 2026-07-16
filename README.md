@@ -1,5 +1,5 @@
-<h1>Pulse/Neurai</h1>
-<p>Pulse (currently Neurai) is a Groq Llama3-8b-8192-based AI model. All you can do with it is the following: </p> 
+<h1>Neurai</h1>
+<p>Neurai is a Groq Llama3-8b-8192-based AI model. All you can do with it is the following: </p> 
 <ul>
 <li>Change his attitude (in server.js)
 </li>
